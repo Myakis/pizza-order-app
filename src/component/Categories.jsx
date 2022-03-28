@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import React, { useState } from 'react';
 
 function Categories({ items }) {
