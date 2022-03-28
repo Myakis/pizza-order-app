@@ -1,8 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Header } from './component';
-import Cart from './component/pages/Cart';
-import Home from './component/pages/Home';
+import { Home, Cart } from './component/pages';
 
 function App() {
   return (

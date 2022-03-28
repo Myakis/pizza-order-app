@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 function Button({ children, outline, className }) {
@@ -12,5 +13,12 @@ function Button({ children, outline, className }) {
     </button>
   );
 }
+
+//Задаем строгую типизацию
+
+Button.propTypes = {
+  className: PropTypes.string.isRequired,
+  children: PropTypes.array.isRequired,
+};
 
 export default Button;

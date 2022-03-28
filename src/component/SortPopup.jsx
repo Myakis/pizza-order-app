@@ -2,26 +2,37 @@ import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 
 function SortPopup({ items }) {
+  //Показывать ли фильтр
   const [visiblePopup, setVisiblePopup] = useState(false);
+  //Активный элемент в филтре
   const [activeIem, setaAtiveItem] = useState(0);
+  //Выбранный элемент в филтре
   const selectedItem = items[activeIem];
+  //Привязываемся с блоку, который показывает список фильтров
   const refPopup = useRef();
 
+  //Выбираем активный элемент и тоглим видимость фильтра
   const activeSortItem = index => {
     setaAtiveItem(index);
     setVisiblePopup(!visiblePopup);
   };
 
+  //Тоглим видимость фильтра
   const toggleVisiblePopUp = () => {
     setVisiblePopup(!visiblePopup);
   };
-
+  //Выключаем видимость фильтра при клике не на блоке с привязкой к useRef
+  const visibiliteHiddenPopup = e => {
+    if (!e.path.includes(refPopup.current)) {
+      setVisiblePopup(visiblePopup);
+    }
+  };
+  //Вешаем слушаете при монтировании и удаляем его при размонтировании
   useEffect(() => {
-    window.addEventListener('click', e => {
-      if (!e.path.includes(refPopup.current)) {
-        setVisiblePopup(visiblePopup);
-      }
-    });
+    window.addEventListener('click', visibiliteHiddenPopup);
+    return () => {
+      window.removeEventListener('click', visibiliteHiddenPopup);
+    };
   }, []);
 
   return (
