@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 
-function SortPopup({ items }) {
+//Оборачиваем в React.memo для оптимизации приложения,чтобы небыло ненужных рендеров
+const SortPopup = React.memo(function SortPopup({ items }) {
   //Показывать ли фильтр
   const [visiblePopup, setVisiblePopup] = useState(false);
   //Активный элемент в филтре
@@ -10,7 +11,6 @@ function SortPopup({ items }) {
   const selectedItem = items[activeIem];
   //Привязываемся с блоку, который показывает список фильтров
   const refPopup = useRef();
-
   //Выбираем активный элемент и тоглим видимость фильтра
   const activeSortItem = index => {
     setaAtiveItem(index);
@@ -71,6 +71,6 @@ function SortPopup({ items }) {
       )}
     </div>
   );
-}
+});
 
 export default SortPopup;

@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 
-function Categories({ items }) {
+//Оборачиваем в React.memo для оптимизации приложения,чтобы небыло ненужных рендеров
+const Categories = React.memo(function Categories({ items, onClickCategory }) {
   const [activeItem, setActiveItem] = useState(null);
 
+  const changeCategory = index => {
+    setActiveItem(index);
+    onClickCategory(index);
+  };
   return (
     <>
       <div className='categories'>
@@ -21,7 +26,7 @@ function Categories({ items }) {
                   className={activeItem === index ? 'active' : ''}
                   key={`${item}_${index}`}
                   onClick={() => {
-                    setActiveItem(index);
+                    changeCategory(index);
                   }}>
                   {item}
                 </li>
@@ -31,6 +36,5 @@ function Categories({ items }) {
       </div>
     </>
   );
-}
-
+});
 export default Categories;

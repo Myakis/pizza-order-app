@@ -1,3 +1,4 @@
+//Задаем значения type для action
 const SET_SORT_ON = 'SET_SORT_ON';
 const SET_CATEGORY_ON = 'SET_CATEGORY_ON';
 
@@ -18,7 +19,7 @@ const filterReducer = (state = initialState, action) => {
     case SET_CATEGORY_ON:
       return {
         ...state,
-        sort: action.category,
+        category: action.category,
       };
 
     default:
@@ -32,7 +33,7 @@ export const setSortrOnAC = sort => ({
   sort,
 });
 export const setCategoryrOnAC = category => ({
-  type: SET_SORT_ON,
+  type: SET_CATEGORY_ON,
   category,
 });
 
