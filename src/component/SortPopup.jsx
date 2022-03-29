@@ -2,31 +2,40 @@ import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
 
 //Оборачиваем в React.memo для оптимизации приложения,чтобы небыло ненужных рендеров
-const SortPopup = React.memo(function SortPopup({ items }) {
+const SortPopup = React.memo(function SortPopup({ items, ...props }) {
   //Показывать ли фильтр
   const [visiblePopup, setVisiblePopup] = useState(false);
+
   //Активный элемент в филтре
   const [activeIem, setaAtiveItem] = useState(0);
+  const [selectedItem, setSelectedItem] = useState(items[0].sort);
+
   //Выбранный элемент в филтре
-  const selectedItem = items[activeIem];
+  // const selectedItem = items.sort[activeIem];
+
   //Привязываемся с блоку, который показывает список фильтров
   const refPopup = useRef();
+
   //Выбираем активный элемент и тоглим видимость фильтра
-  const activeSortItem = index => {
+  const activeSortItem = (item, index) => {
+    setSelectedItem(item.sort);
     setaAtiveItem(index);
     setVisiblePopup(!visiblePopup);
+    props.onClickSort(item.type);
   };
 
   //Тоглим видимость фильтра
   const toggleVisiblePopUp = () => {
     setVisiblePopup(!visiblePopup);
   };
+
   //Выключаем видимость фильтра при клике не на блоке с привязкой к useRef
   const visibiliteHiddenPopup = e => {
     if (!e.path.includes(refPopup.current)) {
       setVisiblePopup(visiblePopup);
     }
   };
+
   //Вешаем слушаете при монтировании и удаляем его при размонтировании
   useEffect(() => {
     window.addEventListener('click', visibiliteHiddenPopup);
@@ -59,10 +68,10 @@ const SortPopup = React.memo(function SortPopup({ items }) {
             {items.map((item, index) => {
               return (
                 <li
-                  key={`${item}_${index}`}
-                  onClick={() => activeSortItem(index)}
+                  key={`${item.sort}_${index}`}
+                  onClick={() => activeSortItem(item, index)}
                   className={activeIem === index ? 'active' : ''}>
-                  {item}
+                  {item.sort}
                 </li>
               );
             })}

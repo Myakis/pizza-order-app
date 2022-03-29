@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 //Оборачиваем в React.memo для оптимизации приложения,чтобы небыло ненужных рендеров
 const Categories = React.memo(function Categories({ items, onClickCategory }) {
-  const [activeItem, setActiveItem] = useState(null);
+  const activeCatecory = useSelector(state => state.filter.category);
+  const [activeItem, setActiveItem] = useState(activeCatecory);
 
   const changeCategory = index => {
     setActiveItem(index);
@@ -15,7 +17,7 @@ const Categories = React.memo(function Categories({ items, onClickCategory }) {
           <li
             className={activeItem == null ? 'active' : ''}
             onClick={() => {
-              setActiveItem(null);
+              changeCategory(null);
             }}>
             Все
           </li>

@@ -5,7 +5,7 @@ const SET_CATEGORY_ON = 'SET_CATEGORY_ON';
 //Инициализируем начальный state
 const initialState = {
   sort: 'popular',
-  category: 0,
+  category: null,
 };
 
 //Редьюсер
@@ -36,5 +36,7 @@ export const setCategoryrOnAC = category => ({
   type: SET_CATEGORY_ON,
   category,
 });
+
+//thunk
 
 export default filterReducer;

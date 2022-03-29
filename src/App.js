@@ -4,18 +4,9 @@ import { Header } from './component';
 import { Home, Cart } from './component/pages';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { setItemsPizzaAC } from './redux/reducer/pizza-reducer';
+import { setItemsPizzaAC, setPizzas } from './redux/reducer/pizza-reducer';
 
 function App() {
-  //Забираем функцию dispatch из store и присваиваем переменной()
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    axios.get('http://localhost:3001/pizzas').then(({ data }) => {
-      dispatch(setItemsPizzaAC(data));
-    });
-  }, []);
-
   return (
     <div>
       <div className='wrapper'>

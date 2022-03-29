@@ -30,7 +30,7 @@ body {
     justify-content: space-between;
     &.d-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, 280px);
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       row-gap: 65px;
       column-gap: 35px;
     }
