@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Categories, SortPopup } from '../../component';
 import { setCategoryrOnAC, setSortrOnAC } from '../../redux/reducer/filter-reducer';
 import { fetchPizzas } from '../../redux/reducer/pizza-reducer';
-
+import { addPizza } from '../../redux/reducer/cart-reducer';
 import PizzaCard from '../PizzaCard';
 import PizzaLoaded from '../PizzaLoaded';
 
@@ -18,6 +18,7 @@ function Home() {
   //достаем нужные значения из state(аналог HOC connect, только на хуках)
   const { items, isLoader } = useSelector(state => state.pizza);
   const { category, sort } = useSelector(state => state.filter);
+  const pizzaItems = useSelector(state => state.cart.items);
   //Забираем функцию dispatch из store и присваиваем переменной()
   const dispatch = useDispatch();
 
@@ -34,6 +35,10 @@ function Home() {
     dispatch(setSortrOnAC(name));
   }, []);
 
+  const onClickPizzaToCart = useCallback(obj => {
+    dispatch(addPizza(obj));
+  }, []);
+
   return (
     <div className='content'>
       <div className='container'>
@@ -45,7 +50,15 @@ function Home() {
         <div className='content__items d-grid'>
           {isLoader
             ? items.map(data => {
-                return <PizzaCard key={data.id} {...data} />;
+                const countPizza = pizzaItems[data.id] && pizzaItems[data.id].length;
+                return (
+                  <PizzaCard
+                    key={data.id}
+                    {...data}
+                    countPizza={countPizza}
+                    onClickPizzaToCart={onClickPizzaToCart}
+                  />
+                );
               })
             : Array(12)
                 .fill('')

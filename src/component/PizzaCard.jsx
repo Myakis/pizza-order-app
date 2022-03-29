@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Button from './Button';
 
-function PizzaCard({ imageUrl, price, name, types, sizes }) {
+function PizzaCard({ imageUrl, price, name, types, sizes, onClickPizzaToCart, id, countPizza }) {
   //Обьявляем наш псевдо state
   //TODO потом его закиним в state react redux
   const avialibleTypesPizza = ['тонкое', 'традиционное'];
@@ -20,6 +21,17 @@ function PizzaCard({ imageUrl, price, name, types, sizes }) {
   //Меняем размер при клике
   const onChangeSize = type => {
     setAviliableSize(type);
+  };
+
+  const addPizza = () => {
+    onClickPizzaToCart({
+      id,
+      name,
+      price,
+      imageUrl,
+      types: avialibleTypesPizza[activeType],
+      sizes: aviliableSize,
+    });
   };
 
   return (
@@ -60,7 +72,7 @@ function PizzaCard({ imageUrl, price, name, types, sizes }) {
       </div>
       <div className='pizza-block__bottom'>
         <div className='pizza-block__price'>от {price} ₽</div>
-        <div className='button button--outline button--add'>
+        <Button oncClicck={addPizza} className='button--add' outline>
           <svg
             width='12'
             height='12'
@@ -73,8 +85,8 @@ function PizzaCard({ imageUrl, price, name, types, sizes }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>2</i>
-        </div>
+          {countPizza && <i>{countPizza}</i>}
+        </Button>
       </div>
     </div>
   );

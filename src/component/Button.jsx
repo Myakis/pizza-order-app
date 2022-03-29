@@ -2,9 +2,10 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-function Button({ children, outline, className }) {
+function Button({ children, outline, className, oncClicck }) {
   return (
     <button
+      onClick={oncClicck}
       href='/cart.html'
       className={classNames('button', className, {
         'button--outline': outline,
