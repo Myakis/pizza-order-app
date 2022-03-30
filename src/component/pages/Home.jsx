@@ -10,7 +10,7 @@ import PizzaLoaded from '../PizzaLoaded';
 
 const categoriesName = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 const sortItems = [
-  { sort: 'популярности', type: 'popular' },
+  { sort: 'популярности', type: 'rating' },
   { sort: 'цене', type: 'price' },
   { sort: 'алфавиту', type: 'name' },
 ];

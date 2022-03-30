@@ -4,7 +4,7 @@ const SET_CATEGORY_ON = 'SET_CATEGORY_ON';
 
 //Инициализируем начальный state
 const initialState = {
-  sort: 'popular',
+  sort: 'rating',
   category: null,
 };
 

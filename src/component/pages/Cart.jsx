@@ -9,6 +9,7 @@ import CartItem from './CartItem';
 function Cart() {
   const { items, totalPrice, totalCount } = useSelector(state => state.cart);
   const groupPizza = Object.keys(items).map(key => items[key].items[0]);
+
   const dispatch = useDispatch();
   //Полная очистака корзины
   const clearFullCart = () => {
@@ -105,6 +106,7 @@ function Cart() {
             </div>
             <div className='content__items'>
               {groupPizza.map(obj => {
+                console.log(obj);
                 return (
                   <CartItem
                     key={obj.id}
@@ -113,7 +115,7 @@ function Cart() {
                     type={obj.types}
                     size={obj.sizes}
                     totalPriceGroup={items[obj.id].totalPrice}
-                    totalCountGroup={items[obj.id].totalCount}
+                    totalCountGroup={items[obj.id].items.length}
                     removeGroupPizza={removeGroupPizza}
                     onMinusPizza={onMinusPizza}
                     onPlusPizza={onPlusPizza}

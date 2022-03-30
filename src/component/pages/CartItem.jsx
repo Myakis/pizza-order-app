@@ -20,6 +20,7 @@ function CartItem({
   const handleOnMinusPizza = () => {
     onMinusPizza(id);
   };
+
   return (
     <div className='cart__item'>
       <div className='cart__item-img'>
