@@ -1,3 +1,18 @@
+# Интернет магазин по покупки пицц
+
+### Используемый Stack
+
+- React
+- react-router-dom
+- axios
+- react-redux
+- prop-types
+- redux-thunk
+- node-sass
+- react-skeleton
+
+![Превьюшка](https://github.com/Myakis/pizza-order-app/raw/master/preview.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
