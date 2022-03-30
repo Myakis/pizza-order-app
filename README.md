@@ -11,7 +11,7 @@
 - node-sass
 - react-skeleton
 
-![Превьюшка](https://github.com/Myakis/pizza-order-app/raw/master/preview-min.png)
+![Превьюшка](https://github.com/Myakis/pizza-order-app/raw/master/preview-min.jpg)
 
 # Getting Started with Create React App
 
