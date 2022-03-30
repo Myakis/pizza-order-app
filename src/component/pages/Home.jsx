@@ -8,7 +8,7 @@ import { addPizza } from '../../redux/reducer/cart-reducer';
 import PizzaCard from '../PizzaCard';
 import PizzaLoaded from '../PizzaLoaded';
 
-const categoriesName = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const categoriesName = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Необычный вкус'];
 const sortItems = [
   { sort: 'популярности', type: 'rating' },
   { sort: 'цене', type: 'price' },

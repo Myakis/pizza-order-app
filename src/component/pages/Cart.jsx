@@ -106,7 +106,6 @@ function Cart() {
             </div>
             <div className='content__items'>
               {groupPizza.map(obj => {
-                console.log(obj);
                 return (
                   <CartItem
                     key={obj.id}
