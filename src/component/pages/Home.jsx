@@ -21,7 +21,6 @@ function Home() {
   const pizzaItems = useSelector(state => state.cart.items);
   //Забираем функцию dispatch из store и присваиваем переменной()
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchPizzas(category, sort));
   }, [category, sort]);
@@ -50,7 +49,7 @@ function Home() {
         <div className='content__items d-grid'>
           {isLoader
             ? items.map(data => {
-                const countPizza = pizzaItems[data.id] && pizzaItems[data.id].length;
+                const countPizza = pizzaItems[data.id] && pizzaItems[data.id].items.length;
                 return (
                   <PizzaCard
                     key={data.id}
