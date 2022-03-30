@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { Categories, SortPopup } from '../../component';
 import { setCategoryrOnAC, setSortrOnAC } from '../../redux/reducer/filter-reducer';
 import { fetchPizzas } from '../../redux/reducer/pizza-reducer';

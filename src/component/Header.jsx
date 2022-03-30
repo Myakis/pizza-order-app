@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import logoSvg from '../assets/img/pizza-logo.svg';
 import Button from './Button';
 
