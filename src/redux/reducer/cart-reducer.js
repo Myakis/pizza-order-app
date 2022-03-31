@@ -3,6 +3,7 @@ const CLEAR_FULL_CART = 'CLEAR_FULL_CART';
 const CLEAR_PIZZA = 'CLEAR_PIZZA';
 const PLUS_PIZZA = 'PLUS_PIZZA';
 const MINUS_PIZZA = 'MINUS_PIZZA';
+
 //Инициализируем начальный state
 const initialState = {
   items: {},
@@ -29,6 +30,7 @@ const getTotalSum = (obj, path) => {
 //Редьюсер
 const cartReducer = (state = initialState, action) => {
   switch (action.type) {
+    //Добавление пицц в корзину
     case ADD_PIZZA_TO_CART:
       const currentPizzaItem = !state.items[action.payload.id]
         ? [action.payload]
@@ -42,10 +44,7 @@ const cartReducer = (state = initialState, action) => {
           totalCount: currentPizzaItem.length,
         },
       };
-      // const newObj = Object.values(obj).map(obj => obj.items);
-      // const allPizza = [].concat.apply([], newObj);
-      // const totalCount = allPizza.length;
-      // const totalPrice = summTotalPrice(allPizza);
+
       const totalCount = getTotalSum(obj, 'items.length');
       const totalPrice = getTotalSum(obj, 'totalPrice');
 
@@ -55,14 +54,14 @@ const cartReducer = (state = initialState, action) => {
         totalCount,
         totalPrice,
       };
+    //Полная очистка корзины
     case CLEAR_FULL_CART:
       return { ...state, items: {}, totalCount: 0, totalPrice: 0 };
-
+    //Удаление группы пицц
     case CLEAR_PIZZA: {
       const newItems = {
         ...state.items,
       };
-      //
       const priceCurrentGroup = newItems[action.payload].totalPrice;
       const priceCountGroup = newItems[action.payload].items.length;
 
@@ -76,10 +75,8 @@ const cartReducer = (state = initialState, action) => {
       };
     }
 
+    //Добавить одну пиццу в опредленную группу
     case PLUS_PIZZA: {
-      // const newItems = [...state.items[action.payload].items, state.items[action.payload].items[0]];
-      // const priceCurrentGroup = newItems.reduce((summ, obj) => obj.price + summ, 0);
-
       const newObjItems = [
         ...state.items[action.payload].items,
         state.items[action.payload].items[0],
@@ -103,19 +100,17 @@ const cartReducer = (state = initialState, action) => {
       };
     }
 
+    //Удалить одну пиццу в опредленную группу
     case MINUS_PIZZA: {
-      // const oldItems = state.items[action.payload].items;
-      // const newItems = oldItems.length > 1 ? state.items[action.payload].items.slice(1) : oldItems;
-      // const priceCurrentGroup = newItems.reduce((summ, obj) => obj.price + summ, 0);
       const oldItems = state.items[action.payload].items;
-      const newObjItems =
+      const newItemsPizza =
         oldItems.length > 1 ? state.items[action.payload].items.slice(1) : oldItems;
 
       const newItems = {
         ...state.items,
         [action.payload]: {
-          items: newObjItems,
-          totalPrice: summTotalPrice(newObjItems),
+          items: newItemsPizza,
+          totalPrice: summTotalPrice(newItemsPizza),
         },
       };
       const totalCount = getTotalSum(newItems, 'items.length');
